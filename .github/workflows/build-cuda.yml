@@ -29,8 +29,8 @@ jobs:
         id: check
         run: |
           # Get latest release from llama.cpp
-          LATEST_RELEASE=$(curl -s https://api.github.com/repos/ggml-org/llama.cpp/releases/latest | jq -r '.tag_name')
-          RELEASE_HASH=$(curl -s https://api.github.com/repos/ggml-org/llama.cpp/releases/latest | jq -r '.target_commitish')
+          LATEST_RELEASE=$(curl -s https://api.github.com/repos/spiritbuun/buun-llama-cpp/releases/latest | jq -r '.tag_name')
+          RELEASE_HASH=$(curl -s https://api.github.com/repos/spiritbuun/buun-llama-cpp/releases/latest | jq -r '.target_commitish')
           
           echo "Latest llama.cpp release: $LATEST_RELEASE"
           echo "Release hash: $RELEASE_HASH"
@@ -131,8 +131,8 @@ jobs:
               
               echo '=== Cloning llama.cpp ==='
               cd /workspace
-              git clone --depth 1 --branch ${{ needs.check-release.outputs.release_tag }} https://github.com/ggml-org/llama.cpp.git || \
-                (git clone https://github.com/ggml-org/llama.cpp.git && cd llama.cpp && git checkout ${{ needs.check-release.outputs.release_hash }})
+              git clone --depth 1 --branch ${{ needs.check-release.outputs.release_tag }} https://github.com/spiritbuun/buun-llama-cpp.git || \
+                (git clone https://github.com/spiritbuun/buun-llama-cpp.git && cd buun-llama-cpp && git checkout ${{ needs.check-release.outputs.release_hash }})
               cd llama.cpp
               
               echo '=== Configuring build with Ninja ==='
@@ -254,9 +254,9 @@ jobs:
           body: |
             # llama.cpp ${{ needs.check-release.outputs.release_tag }} with CUDA Support
             
-            Pre-built binaries of llama.cpp with CUDA support for multiple CUDA versions.
+            Pre-built binaries of buun llama.cpp fork with CUDA support for multiple CUDA versions.
             
-            **Source:** https://github.com/ggml-org/llama.cpp/releases/tag/${{ needs.check-release.outputs.release_tag }}
+            **Source:** https://github.com/spiritbuun/buun-llama-cpp/releases/tag/${{ needs.check-release.outputs.release_tag }}
             **Commit:** ${{ needs.check-release.outputs.release_hash }}
             
             ## CUDA Versions
