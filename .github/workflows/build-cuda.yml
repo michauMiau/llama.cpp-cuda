@@ -133,7 +133,7 @@ jobs:
               cd /workspace
               git clone --depth 1 --branch ${{ needs.check-release.outputs.release_tag }} https://github.com/spiritbuun/buun-llama-cpp.git || \
                 (git clone https://github.com/spiritbuun/buun-llama-cpp.git && cd buun-llama-cpp && git checkout ${{ needs.check-release.outputs.release_hash }})
-              cd llama.cpp
+              cd buun-llama-cpp
               
               echo '=== Configuring build with Ninja ==='
               export LIBRARY_PATH="/usr/local/cuda/lib64/stubs${LIBRARY_PATH:+:$LIBRARY_PATH}"
@@ -159,7 +159,7 @@ jobs:
               mkdir -p binaries/cuda-${{ matrix.cuda_version_short }}
 
               # Copy everything from build/bin
-              cp -r llama.cpp/build/bin/* binaries/cuda-${{ matrix.cuda_version_short }}/
+              cp -r buun-llama-cpp/build/bin/* binaries/cuda-${{ matrix.cuda_version_short }}/
 
               # Strip binaries to reduce size (executables only, not .so files)
               find binaries/cuda-${{ matrix.cuda_version_short }}/ -type f -executable ! -name "*.so*" -exec strip {} \; 2>/dev/null || true
@@ -175,7 +175,7 @@ jobs:
               ls -lh binaries/cuda-${{ matrix.cuda_version_short }}/
               
               echo '=== Cleaning up build directory ==='
-              rm -rf llama.cpp
+              rm -rf buun-llama-cpp
             "
           
           # Remove Docker image to free space
