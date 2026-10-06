@@ -64,7 +64,7 @@ jobs:
           # Native runners — no QEMU. nvidia/cuda:*-cudnn-devel-ubuntu22.04 is
           # multi-arch on Docker Hub so the same build path runs on both.
           - { suffix: amd64, runs_on: ubuntu-latest }
-          - { suffix: arm64, runs_on: ubuntu-24.04-arm }
+         # - { suffix: arm64, runs_on: ubuntu-24.04-arm }
         include:
           - cuda_version: '12.8.1'
             cuda_version_short: '12.8'
