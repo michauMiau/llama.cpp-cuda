@@ -131,7 +131,7 @@ jobs:
               
               echo '=== Cloning llama.cpp ==='
               cd /workspace
-              git clone --depth 1 --branch ${{ needs.check-release.outputs.release_tag }} https://github.com/spiritbuun/buun-llama-cpp.git || \
+              git clone --depth 1 --branch master https://github.com/spiritbuun/buun-llama-cpp.git || \
                 (git clone https://github.com/spiritbuun/buun-llama-cpp.git && cd buun-llama-cpp && git checkout ${{ needs.check-release.outputs.release_hash }})
               cd buun-llama-cpp
               
